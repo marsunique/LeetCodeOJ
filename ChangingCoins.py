@@ -4,7 +4,7 @@
 # Case4: the given amount is greater than or equal to c[i] and changing coins without c[i]
 
 def coin_change(c, n):
-    c.sort()
+    c.sort()    #make sure that 1 cent is the first denomination
     d = len(c)
     count = [([None]*(n+1))for i in range(d)]   #init a list
     for i in range(0,d):
@@ -20,5 +20,5 @@ def coin_change(c, n):
     print count
 
 
-denominations = [4,3,1]
+denominations = [4,1,3]
 coin_change(denominations,6)
