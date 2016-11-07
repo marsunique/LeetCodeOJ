@@ -15,7 +15,7 @@ class Solution(object):
                 tail += 1
             else:
                 if tail - head >= 3:
-                    count += self.countArithmetic(tail-head)
+                    count += self.countArithmetic(tail-head) # actually is (tail-1)-head+1
                 head = tail - 1
                 tail += 1
         if tail - head >= 3:
