@@ -11,7 +11,9 @@ def LIS(s):
                 if max < l[j]:
                     max = l[j]
                     r[i] = j
+                    # r[i] means s[r[i]] is the element in front of s[i] in the LIS
         l[i] = max+1
+        # l[i] is the length of LIS from s[0] to s[i]
     print s
     print l
     print r
