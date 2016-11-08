@@ -57,3 +57,6 @@ class Solution(object):
             return True
         else:
             return False
+
+test = Solution()
+print test.isSameTree(None, None)
