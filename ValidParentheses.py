@@ -8,7 +8,7 @@ class Solution(object):
         for bracket in s:
             if bracket == '(' or bracket == '{' or bracket == '[':
                 stack.append(bracket)
-            elif stack == []:
+            elif stack == []:   # facing a '(', '[' or '{' but stack is empty
                 return False
             elif bracket == ')':
                 if stack.pop() != '(':
@@ -19,7 +19,7 @@ class Solution(object):
             elif bracket == ']':
                 if stack.pop() != '[':
                     return False
-        if len(stack):
+        if len(stack):  # stack is not empty
             return False
         return True
 
