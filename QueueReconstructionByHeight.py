@@ -10,9 +10,8 @@ class Solution(object):
                 people_dict[each_person[0]] = [(each_person[1], each_person)]
                 height.append(each_person[0])
             #print people_dict
-        height.sort()
-        height = height[::-1]
-        #print height
+        height.sort(reverse=True)
+        # print height
         for each_height in height:
             people_with_height = people_dict[each_height]
             people_with_height.sort()
