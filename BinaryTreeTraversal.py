@@ -18,6 +18,51 @@ def preorder(root):
             node = stack.pop()
             root = node.right
     return res
+# Inorder
+def inorder(root):
+    res = []
+    stack = []
+    while stack or root:
+        if root:
+            stack.append(root)
+            root = root.left
+        else:
+            node = stack.pop()
+            res.append(node.val)
+            root = node.right
+    return res
+# Postorder
+def postorder(root):
+    res = []
+    if not root:
+        return res
+    pre = None
+    stack = [root]
+    while stack:
+        top = stack[-1]
+        # If stack top node has no child or its children have been looked up, then it can be poped and looked up
+        if (not top.left and not top.right) or (pre is top.left or pre is top.right):
+            res.append(top.val)
+            pre = stack.pop()
+        else:
+            if top.right:
+                stack.append(top.right)
+            if top.left:
+                stack.append(top.left)
+    return res
+    # # Another approach to postorder traversal, tricky one
+    # # root->right->left and reverse the result
+    # res = []
+    # stack = []
+    # while stack or root:
+    #     if root:
+    #         res.append(root.val)
+    #         stack.append(root)
+    #         root = root.right
+    #     else:
+    #         node = stack.pop()
+    #         root = node.left
+    # return res[::-1]
 
 node1 = TreeNode(1)
 node2 = TreeNode(2)
@@ -35,3 +80,5 @@ node3.left = node6
 node3.right = node7
 
 print preorder(node1)
+print inorder(node1)
+print postorder(node1)
