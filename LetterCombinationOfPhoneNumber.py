@@ -86,11 +86,10 @@ class Solution(object):
         :type digits: str
         :rtype: List[str]
         """
-        
         if digits == '':
             return []
         res = []
-        self.dfs(digits,0,res,'')
+        self.dfs(digits, 0, res, '')
         return res
 test = Solution()
 print test.letterCombinations('23')

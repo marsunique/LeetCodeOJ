@@ -22,6 +22,13 @@ class Solution(object):
             if self.maximum < depth + 1:
                 self.maximum = depth + 1
             self.findchild(node.right, depth+1)
+class Solution:
+    # @param {TreeNode} root
+    # @return {integer}
+    def maxDepth(self, root):
+        if not root:
+            return 0
+        return 1 + max(self.maxDepth(root.left), self.maxDepth(root.right))
 
 node1 = TreeNode()
 node2 = TreeNode()
