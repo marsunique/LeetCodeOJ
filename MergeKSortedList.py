@@ -20,7 +20,7 @@ class Solution(object):
             node = heappop(array)
             cur.next = node[1]
             cur = cur.next
-            if not (node[1].next is None):
+            if node[1].next:
                 heappush(array, (node[1].next.val, node[1].next))
         return res.next
 
