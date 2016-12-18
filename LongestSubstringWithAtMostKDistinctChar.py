@@ -14,24 +14,19 @@ class Solution(object):
         for start in range(len(s)):
             while end < len(s):
                 print start, s[start], dic, end, s[end]
-                if start != end:
-                    if s[end] in dic:
+                if s[end] in dic:
+                    dic[s[end]] += 1
+                    end += 1
+                else:
+                    if len(dic) < k:
+                        dic.setdefault(s[end], 0)
                         dic[s[end]] += 1
                         end += 1
                     else:
-                        if len(dic) < k:
-                            dic.setdefault(s[end], 0)
-                            dic[s[end]] += 1
-                            end += 1
-                        else:
-                            dic[s[start]] -= 1
-                            if dic[s[start]] == 0:
-                                del(dic[s[start]])
-                            break
-                else:
-                    dic.setdefault(s[end], 0)
-                    dic[s[end]] += 1
-                    end += 1
+                        dic[s[start]] -= 1
+                        if dic[s[start]] == 0:
+                            del(dic[s[start]])
+                        break
             res = max(res, end-start)
         return res
 
