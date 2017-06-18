@@ -10,8 +10,9 @@ class Solution(object):
         :type l2: ListNode
         :rtype: ListNode
         """
-        head = n = ListNode(-1)
         carry = 0
+        head = ListNode(-1)
+        cur = head
         while l1 or l2 or carry:
             sum = carry
             if l1:
@@ -20,10 +21,11 @@ class Solution(object):
             if l2:
                 sum += l2.val
                 l2 = l2.next
-            carry = sum / 10
-            node = ListNode(sum % 10)
-            n.next = node
-            n = n.next
+            carry = sum/10
+            sum = sum%10
+            node = ListNode(sum)
+            cur.next = node
+            cur = cur.next
         return head.next
 
 # in-place, no extra link list
