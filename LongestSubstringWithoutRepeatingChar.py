@@ -9,18 +9,19 @@ class Solution(object):
         # if the character is not in the dictionary or it is in the dict but its position is smaller than start, means it is not in the current substring.
         dic = {}
         start = 0
-        end = 0
         res = 0
-        while end < len(s):
-            if s[end] in dic and dic[s[end]] >= start:
-                pos = dic[s[end]]
-                dic[s[end]] = end
+        for end in range(len(s)):
+            if s[end] in dic and dic[s[end]] >= start:  # repeating character
+                # update res
                 res = max(end-start, res)
-                start = pos + 1
+                # update new start position
+                start = dic[s[end]] + 1
+                # update dic
+                dic[s[end]] = end
             else:
                 dic[s[end]] = end
-            end += 1
-        return max(end-start, res)
+                res = max(end-start+1, res)
+        return res
 
 test = Solution()
-print test.lengthOfLongestSubstring('abba')
+print test.lengthOfLongestSubstring('abbac')
