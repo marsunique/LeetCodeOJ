@@ -5,18 +5,16 @@ class Solution(object):
         :type numRows: int
         :rtype: str
         """
-        if numRows == 1 or len(s) < numRows:
-            return s
-        res = [''] * numRows
+        res = [''] *numRows
         index = 0
-        step = -1
         for c in s:
             res[index] += c
-            if index == numRows - 1 or index == 0:
-                # change direction
-                step = -step
+            if index == 0:
+                step = 1
+            if index == numRows-1:
+                step = -1
             index += step
         return ''.join(res)
 
 test = Solution()
-print test.convert('abcd', 2)
+print test.convert('paypalishiring', 3)
