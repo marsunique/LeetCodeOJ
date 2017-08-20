@@ -6,26 +6,22 @@ class Solution(object):
         :rtype: str
         """
         length = len(s)
-        dp = [([None]*length)for i in range(length)]
-        for i in range(length):
-            dp[i][i] = True
+        dp = [[None]*length for i in range(length)]
         start = 0
         end = 0
-        for i in range(length-2, -1, -1):
+        for i in range(length-1, -1, -1):
+            dp[i][i] = True
             for j in range(i+1, length):
-                if j - i == 1:
-                    if s[i] == s[j]:
-                        dp[i][j] = True
-                        # update start and end position
-                        if end - start < j - i:
-                            start = i
-                            end = j
-                elif dp[i+1][j-1] and s[i] == s[j]:
+                if j - i == 1 and s[i] == s[j]:
                     dp[i][j] = True
-                    # update start and end position
-                    if end - start < j - i:
-                            start = i
-                            end = j
+                    if j - i > end - start:
+                        start = i
+                        end = j
+                if j - i > 1 and s[i] == s[j] and dp[i+1][j-1]:
+                    dp[i][j] = True
+                    if j - i > end - start:
+                        start = i
+                        end = j
         return s[start:end+1]
 
 # Expand from center
