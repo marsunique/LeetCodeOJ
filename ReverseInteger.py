@@ -8,6 +8,7 @@ class Solution(object):
         MIN = ~(0x80000000 ^ 0xffffffff)
         # use MAX and MIN to do overflow detection
         # python uses more than 32 bits to indicate a number
+        # when indicate negative numbers, all higher bits are 1
         sign = cmp(x, 0)
         # get the sign of x
         x = str(sign*x)[::-1]
