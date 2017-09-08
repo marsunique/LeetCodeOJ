@@ -1,4 +1,20 @@
 class Solution(object):
+    def kthSmall(self, nums, k):
+        """
+        :type nums: List[int]
+        :type k: int
+        """
+        if len(nums) == 1:
+            return nums[0]
+        else:
+            pos = self.partition(nums)
+            if pos == k-1:
+                return nums[pos]
+            elif pos > k-1:
+                return self.kthSmall(nums[:pos], k)
+            else:
+                return self.kthSmall(nums[pos+1:], k-pos-1)
+
     def partition(self, nums):
         """
         :type nums: List[int]
@@ -11,10 +27,8 @@ class Solution(object):
                 temp = nums[pos]
                 nums[pos] = nums[i]
                 nums[i] = temp
-        print nums
-        print i
-
-nums = [1,2,4,5,3]
+        return pos
+k = 7
+nums = [5,5,5,2,1,4,3,6,7]
 test = Solution()
-test.partition(nums)
-            
+print test.kthSmall(nums, k)
