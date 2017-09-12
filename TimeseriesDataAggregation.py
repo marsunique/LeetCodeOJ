@@ -1,24 +1,27 @@
 class Solution(object):
     def TimeAggregation(self, data):
         data = data.split('\n')
+        # extract start year, month and end year, month
         self.start_year = data[0].split(',')[0].strip().split('-')[0]
         self.start_month = data[0].split(',')[0].strip().split('-')[1]
         self.end_year = data[0].split(',')[1].strip().split('-')[0]
         self.end_month = data[0].split(',')[1].strip().split('-')[1]
         
-        res = {}    # res = {year: {month: {type: count} } }
+        res = {}    # the structure of res = {year: {month: {type: count} } }
 
+        # extract the year, month, engagement type and count
         for i in range(2, len(data)-1):
             year = data[i].split(',')[0].strip().split('-')[0]
             month = data[i].split(',')[0].strip().split('-')[1]
             e_type = data[i].split(',')[1].strip()
             count = data[i].split(',')[2].strip()
+            # if date is within the interval, add data into dict
             if self.dateInInterval(year, month):
                 res.setdefault(year, {})
                 res[year].setdefault(month, {})
                 res[year][month].setdefault(e_type, 0)
                 res[year][month][e_type] += int(count)
-        s = ''
+        s = ''  # output string
         for year in res:
             for month in res[year]:
                 s += year + '-' + month
@@ -29,20 +32,25 @@ class Solution(object):
         return s
     
     def dateInInterval(self, year, month):
-        if year == self.start_year:
-            if month >= self.start_month:
-                return True
-        elif year > self.start_year and year < self.end_year:
+        start = self.start_year + self.start_month
+        end = self.end_year + self.end_month
+        if year + month >= start and year + month <= end:
             return True
-        elif year == self.end_year:
-            if month <= self.end_month:
-                return True
-        else:
-            return False
         return False
+
+    # def dateInInterval(self, year, month):
+    #     if year == self.start_year:
+    #         if month >= self.start_month:
+    #             return True
+    #     elif year > self.start_year and year < self.end_year:
+    #         return True
+    #     elif year == self.end_year:
+    #         if month <= self.end_month:
+    #             return True
+    #     else:
+    #         return False
+    #     return False
         
-
-
 data = '\
 2015-08, 2016-04\n\
 \n\
