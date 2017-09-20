@@ -7,6 +7,7 @@ class Solution(object):
         :type n: int
         :rtype: void Do not return anything, modify nums1 in-place instead.
         """
+        # insert from the end of nums1
         while m and n:
             if nums1[m-1] > nums2[n-1]:
                 nums1[m+n-1] = nums1[m-1]
