@@ -5,48 +5,21 @@ class Solution(object):
         :type b: str
         :rtype: str
         """
-        if len(a) < len(b):
-            length = len(a)
-            longer = len(b)
+        len_a = len(a)
+        len_b = len(b)
+        # use '0' to make up the shorter number
+        if len_a < len_b:
+            a = '0' * (len_b - len_a) + a
         else:
-            length = len(b)
-            longer = len(a)
-        carry_bit = '0'
+            b = '0' * (len_a - len_b) + b
+        carry = 0
         res = ''
-        for i in range(1,longer+1):
-            if i < length+1:
-                if a[-i] == '0' and b[-i] == '0':
-                    res = carry_bit + res
-                    carry_bit = '0'
-                elif a[-i] == '1' and b[-i] == '1':
-                    res = carry_bit + res
-                    carry_bit = '1'
-                else:
-                    if carry_bit == '0':
-                        res = '1' + res
-                    else:
-                        res = '0' + res
-            else:
-                if carry_bit == '0':
-                    if len(a) > len(b):
-                        res = a[-i] + res
-                    else:
-                        res = b[-i] + res
-                else:
-                    if len(a) > len(b):
-                        if a[-i] == '0':
-                            res = '1' + res
-                            carry_bit = '0'
-                        else:
-                            res = '0' + res
-                    else:
-                        if b[-i] == '0':
-                            res = '1' + res
-                            carry_bit = '0'
-                        else:
-                            res = '0' + res
-        if carry_bit == '1':
-            res = '1' + res
+        for i in range(len(a)-1, -1, -1):
+            cur_bit = (carry + int(a[i]) + int(b[i])) % 2
+            carry = (carry + int(a[i]) + int(b[i])) / 2
+            res = str(cur_bit) + res
+        if carry:
+            res = str(carry) + res
         return res
 
 test = Solution()
