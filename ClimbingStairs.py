@@ -4,6 +4,8 @@ class Solution(object):
         :type n: int
         :rtype: int
         """
+        # DP f(n) = f(n-1) + f(n-2)
+        # It essentially is Fibonacci Numbers
         if n <= 3:
             return n
         n_1 = 3
