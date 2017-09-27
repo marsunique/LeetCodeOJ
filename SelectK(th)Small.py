@@ -13,7 +13,7 @@ class Solution(object):
             elif pos > k-1:
                 return self.kthSmall(nums[:pos], k)
             else:
-                return self.kthSmall(nums[pos+1:], k-pos-1)
+                return self.kthSmall(nums[pos+1:], k-(pos+1))
 
     def partition(self, nums):
         """
