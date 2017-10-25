@@ -40,7 +40,8 @@ def postorder(root):
     stack = [root]
     while stack:
         top = stack[-1]
-        # If stack top node has no child or its children have been looked up, then it can be poped and looked up
+        # If stack top node has no child or its children have 
+        # been looked up, then it can be poped and looked up
         if (not top.left and not top.right) or (pre is top.left or pre is top.right):
             res.append(top.val)
             pre = stack.pop()
