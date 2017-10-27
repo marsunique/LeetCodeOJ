@@ -4,6 +4,8 @@ class ListNode(object):
         self.val = x
         self.next = None
 
+# use self-implemented heapsort (priority queue)
+# Time complexity is O(NlogK), N is total nodes number, K is list number
 class Solution(object):
     def mergeKLists(self, lists):
         """
@@ -17,7 +19,7 @@ class Solution(object):
         for node in lists:
             if node:
                 arry.append(node)
-        self.buildHeap(arry) # O(k), buildHeap is linear time
+        self.buildHeap(arry) # O(K), buildHeap is linear time
         while arry: # O(N)
             node = arry[0]
             cur.next = node
@@ -28,7 +30,7 @@ class Solution(object):
                 # switch first and last element, make pop() quick
                 arry[0], arry[-1] = arry[-1], arry[0]
                 arry.pop()
-            self.heapify(arry, 0)   # heapify is O(logk)
+            self.heapify(arry, 0)   # heapify is O(logK)
         return head.next
 
     def buildHeap(self, arry):
