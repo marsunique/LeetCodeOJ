@@ -38,6 +38,7 @@ class Solution(object):
         return slow
 
     def reverse(self, head):
+        # add every node from second position into the first
         cur = head.next
         head.next = None    # avoid infinite loop
         while cur:
