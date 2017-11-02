@@ -10,23 +10,16 @@ class Solution(object):
         :type head: ListNode
         :rtype: ListNode
         """
-        real_head = ListNode(-1)
-        real_head.next = head
-        p = real_head.next
-        while p:
-            if p is real_head.next:
-                temp = p.next
-                p.next = None
-                p = temp
-                # if p is the first node, p.next = None
-            else:
-                temp = real_head.next
-                real_head.next = p
-                temp2 = p.next
-                p.next = temp
-                p = temp2
-                # if p is not the first node, insert p behind head
-        return real_head.next
+        if not head:
+            return None
+        cur = head.next
+        head.next = None    # avoid infinite loop
+        while cur:
+            temp = cur.next
+            cur.next = head
+            head = cur
+            cur = temp
+        return head
 # Recursive
 class Solution(object):
     def reverseList(self, head):
