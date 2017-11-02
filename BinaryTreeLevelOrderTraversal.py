@@ -13,7 +13,7 @@ class Solution(object):
         """
         res = []
         if not root:
-            return []
+            return res
         nodes = [root]  # store nodes on current level
         while nodes:
             temp_nodes = [] # store nodes from next level
