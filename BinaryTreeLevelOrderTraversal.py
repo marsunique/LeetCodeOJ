@@ -13,18 +13,19 @@ class Solution(object):
         """
         res = []
         if not root:
-            return res
-        queue = [[root]]
-        res = [[root.val]]
-        while queue:
-            queue = [[node.left, node.right] for pair in queue for node in pair if node]
-            # queue = [[node1.left, node1.right], [node2.left, node2.right]]
-            print 'queue',queue
-            temp = [child.val for pair in queue for child in pair if child]
-            print 'temp',temp
-            if len(temp):
-                res.append(temp)
-            print 'res',res
+            return []
+        nodes = [root]  # store nodes on current level
+        while nodes:
+            temp_nodes = [] # store nodes from next level
+            vals = []   # store value of nodes from current level
+            for node in nodes:
+                vals.append(node.val)
+                if node.left:
+                    temp_nodes.append(node.left)
+                if node.right:
+                    temp_nodes.append(node.right)
+            res.append(vals)
+            nodes = temp_nodes
         return res
 
 node1 = TreeNode(3)
