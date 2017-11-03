@@ -17,6 +17,8 @@ class Solution(object):
                 res.append(prefix+[candidates[i]])
             elif candidates[i] < target:
                 self.helper(prefix+[candidates[i]], candidates[i:], target-candidates[i], res)
+            else:
+                continue
 
 test = Solution()
 print test.combinationSum([2,3,6,7], 7)
