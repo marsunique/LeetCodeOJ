@@ -10,13 +10,13 @@ class Solution(object):
         return res
         
     def helper(self, prefix, candidates, target, res):
-        can = candidates[:]
-        for i in range(len(can)):
-            if can[-1] == target:
-                res.append(prefix+[can[-1]])
-            elif can[-1] < target:
-                self.helper(prefix+[can[-1]], can, target-can[-1], res)
-            can.pop()
+        # each loop reduce one candidate from head
+        # only consider candidates[i:]
+        for i in range(len(candidates)):
+            if candidates[i] == target:
+                res.append(prefix+[candidates[i]])
+            elif candidates[i] < target:
+                self.helper(prefix+[candidates[i]], candidates[i:], target-candidates[i], res)
 
 test = Solution()
 print test.combinationSum([2,3,6,7], 7)
