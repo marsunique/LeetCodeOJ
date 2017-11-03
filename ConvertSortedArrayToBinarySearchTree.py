@@ -11,12 +11,8 @@ class Solution(object):
         :type nums: List[int]
         :rtype: TreeNode
         """
-        # head_root is like the head pointer, can use head_root.left 
-        # or head_root.right to store the actual root node
-        head_root = TreeNode(0)
         # helper function is used to return the entire sub tree structure
-        head_root.left = self.helper(nums)
-        return head_root.left
+        return self.helper(nums)
     
     def helper(self, nums):
         if not nums:
