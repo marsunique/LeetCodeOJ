@@ -8,6 +8,46 @@ class Solution(object):
         """
         s = s.replace(' ', '')
         s += '#'
+        stack = []
+        sign = '+'
+        num = 0
+        for ch in s:
+            if ch.isdigit():
+                num = num * 10 + int(ch)
+            else:
+                if sign == '+':
+                    stack.append(num)
+                elif sign == '-':
+                    stack.append(-num)
+                elif sign == '*':
+                    temp = stack.pop()
+                    stack.append(temp*num)
+                elif sign == '/':
+                    temp = stack.pop()
+                    if temp < 0:
+                        stack.append(-(abs(temp)/num))
+                    else:
+                        stack.append(temp/num)
+                num = 0
+                sign = ch
+        return sum(stack)
+
+test = Solution()
+print test.calculate('11-6+2*3+50/10*2+12')
+print test.calculate("1*2-3/4+5*6-7*8+9/10")
+print test.calculate('1-3/4')
+print -4/3
+
+
+
+class Solution(object):
+    def calculate(self, s):
+        """
+        :type s: str
+        :rtype: int
+        """
+        s = s.replace(' ', '')
+        s += '#'
         opnd_stack =[]
         optr_stack = []
         priority = {
