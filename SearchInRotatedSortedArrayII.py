@@ -31,3 +31,6 @@ class Solution(object):
                     return self.helper(l, mid, nums, target)
             if nums[mid] == nums[l]:
                 return self.helper(l+1, r, nums, target)
+
+test = Solution()
+test.search([1], 0)
